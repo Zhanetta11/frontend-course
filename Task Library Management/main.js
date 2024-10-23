@@ -1,5 +1,4 @@
 const books = [
-
     { title: "War and Peace", author: "Leo Tolstoy", isAvailable: true },
     { title: "Crime and Punishment", author: "Fyodor Dostoevsky", isAvailable: false },
     { title: "The Master and Margarita", author: "Mikhail Bulgakov", isAvailable: true },
