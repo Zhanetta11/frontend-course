@@ -112,3 +112,59 @@ hr {
     justify-content: center;
     margin-top: -20px;
 }  
+
+@media (max-width: 600px) {
+    .boarding_pass {
+        width: 270px;
+        height: 320px;
+        padding: 30px 30px 20px;
+        margin-top: 50px;
+      }
+      
+    .cities {
+        margin-bottom: 30px;
+    }
+      
+    .city h2 {
+        font-size: 28px;
+        font-weight: 800;
+        height: 30px;
+    }
+      
+    .city p {
+        font-size: 11px;
+        font-weight: 500;
+        padding-top: 5px;
+    }
+      
+    hr {
+        width: 20px;
+        border: none;
+        height: 4px;
+    }
+    
+    .horizontal-info {
+        width: 180px;
+        margin-bottom: 25px;
+    }
+    
+    .horizontal-info h3, .left_side h3 {
+        font-size: 11px;
+        font-weight: 500;
+    }
+      
+    .horizontal-info p,  .left_side p  {
+        font-size: 12px;
+        font-weight: 700;
+        padding-top: 2px;
+    }
+
+    .left_side div {
+        margin-bottom: 15px;
+    }
+     
+    .qr_code img {
+        width: 110px;
+        height: 110px;
+    }
+}
