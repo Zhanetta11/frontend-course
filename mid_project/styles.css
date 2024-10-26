@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+    
+body {
+    background: url('./img/background.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;    
+    height: 100vh;
+}
+  
+.boarding_pass {
+    background: #fff;
+    width: 370px;
+    height: 410px;
+    padding: 40px 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-top: 75px;
+  }
+  
+.container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.cities {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+  
+.city h2 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #3b8acf;
+    height: 55px;
+}
+  
+.city p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color:#b3b4b4;
+}
+  
+hr {
+    width: 25px;
+    border: none;
+    height: 5px;
+    background-color: #407cff4f; 
+}
+
+  
+.flight_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.horizontal-info {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.horizontal-info h3, .left_side h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color:#b3b4b4;
+}
+  
+.horizontal-info p,  .left_side p  {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 450;
+    padding-top: 5px;
+}
+
+.amsterdam {
+    display: flex;
+    justify-content: right;
+}
+  
+.vertical-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+  
+.left_side div {
+    margin-bottom: 15px;
+}
+ 
+.qr_code img {
+    width: 140px;
+    height: 140px;
+}
+  
+.qr_code {
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+}  
+
+@media (max-width: 600px) {
+    .boarding_pass {
+        width: 270px;
+        height: 320px;
+        padding: 30px 30px 20px;
+        margin-top: 50px;
+      }
+      
+    .cities {
+        margin-bottom: 30px;
+    }
+      
+    .city h2 {
+        font-size: 28px;
+        font-weight: 800;
+        height: 30px;
+    }
+      
+    .city p {
+        font-size: 11px;
+        padding-top: 5px;
+    }
+      
+    hr {
+        width: 20px;
+        height: 4px;
+    }
+    
+    .horizontal-info {
+        width: 180px;
+    }
+    
+    .horizontal-info h3, .left_side h3 {
+        font-size: 11px;
+        font-weight: 500;
+    }
+      
+    .horizontal-info p,  .left_side p  {
+        font-size: 12px;
+        font-weight: 700;
+        padding-top: 2px;
+    }
+
+    .qr_code img {
+        width: 110px;
+        height: 110px;
+    }
+}
