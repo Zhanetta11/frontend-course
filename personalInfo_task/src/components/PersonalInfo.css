@@ -31,7 +31,6 @@
     font-size: 16px;
     color: white;
     background-color: #3a7e3c;
-    margin-top: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -39,4 +38,12 @@
 
 .btn:hover {
     background-color: #be371f;
+}
+
+.message {
+    width: 200px;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
 }

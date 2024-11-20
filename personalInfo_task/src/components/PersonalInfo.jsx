@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PersonalInfo.css';
 
 const PersonalInfo = () => {
+    const [messageVisible, setMessageVisible] = useState(false);
+
+    const handleClick = () => {
+        setMessageVisible(true);
+    };
+
     return (
         <div className="personal-info">
             <h1 className="name">Alim Alimbekovich</h1>
@@ -11,7 +17,9 @@ const PersonalInfo = () => {
             <p> <strong>Experience:</strong> 8 years</p>
             <p> <strong>Place of residence:</strong> Bishkek, Kyrgyzstan</p>
 
-            <button className="btn">
+            {messageVisible && <p className="message">You clicked the button</p>}
+
+            <button className="btn" onClick={handleClick}>
                 Click button
             </button>
         </div>
