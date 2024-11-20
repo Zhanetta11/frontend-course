@@ -20,7 +20,7 @@ const PersonalInfo = () => {
             {messageVisible && <p className="message">You clicked the button</p>}
 
             <button className="btn" onClick={handleClick}>
-                Click button
+                Promote
             </button>
         </div>
     );
