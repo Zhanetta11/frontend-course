@@ -10,6 +10,10 @@ const PersonalInfo = () => {
             <p> <strong>Age:</strong> 28 years old</p>
             <p> <strong>Experience:</strong> 8 years</p>
             <p> <strong>Place of residence:</strong> Bishkek, Kyrgyzstan</p>
+
+            <button className="btn">
+                Click button
+            </button>
         </div>
     );
 };
