@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    
+}
+
+.personal-info {
+    max-width: 400px;
+    padding: 30px;
+    background-color: rgba(128, 128, 128, 0.226);
+    font-family: Arial, sans-serif;
+    color: #000;
+    margin: 0 auto;
+}
+
+.name {
+    font-size: 30px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.position {
+    text-align: center;
+    font-size: 22px;
+    color: #555;
+    margin-bottom: 15px;
+}
