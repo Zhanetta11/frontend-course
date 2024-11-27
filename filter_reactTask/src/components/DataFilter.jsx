@@ -21,7 +21,18 @@ const DataFilter = () => {
     useEffect(() => {
         setData(nameData);
     }, []);
-    return <div>Data filtering</div>;
+
+    return (
+        <div>
+            <h1>Data Filtering</h1>
+            <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+        </div>
+    );
 };
 
 export default DataFilter;
