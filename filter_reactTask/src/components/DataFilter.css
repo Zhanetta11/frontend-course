@@ -10,3 +10,13 @@ input[type="text"] {
     padding: 10px;
     border-radius: 5px;
 }
+
+ul {
+    list-style: none;
+    width: 100%;
+    max-width: 200px;
+}
+
+li {
+    padding: 10px;
+}

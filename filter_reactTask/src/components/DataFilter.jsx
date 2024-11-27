@@ -22,6 +22,10 @@ const DataFilter = () => {
         setData(nameData);
     }, []);
 
+    const filteredData = data.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div>
             <h1>Data Filtering</h1>
@@ -31,6 +35,15 @@ const DataFilter = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
+            {filteredData.length > 0 ? (
+                <ul>
+                    {filteredData.map((item) => (
+                        <li key={item.id}>{item.name}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No matching results found.</p>
+            )}
         </div>
     );
 };
