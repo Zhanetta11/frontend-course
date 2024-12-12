@@ -31,5 +31,15 @@ const renderData = (data) => {
     const weatherCondition = document.createElement('h4')
     weatherCondition.textContent = `Weather Condition: ${data.weather[0].main}`;
 
-    output.append(cityName, tempC, weatherCondition)
+    const humidity = document.createElement('h5');
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+
+    const windSpeed = document.createElement('h5');
+    windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+
+    const weatherIcon = document.createElement('img');
+    weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+    weatherIcon.alt = data.weather[0].main;
+
+    output.append(cityName, tempC, weatherCondition, humidity, windSpeed, weatherIcon)
 }
