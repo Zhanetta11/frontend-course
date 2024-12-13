@@ -141,3 +141,46 @@ const toggleFavorites = () => {
 favButton.addEventListener('click', toggleFavorites);
 
 renderFavorites();
+
+
+const weatherWidget = document.querySelector('.weather-widget');
+
+const renderWidgetWeather = (data) => {
+    weatherWidget.innerHTML = `
+        <h4>${data.name}</h4>
+        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].main}">
+        <p>${Math.floor(data.main.temp - 273.15)}°C</p>
+        <p>${data.weather[0].main}</p>
+    `;
+};
+
+const getWeatherByLocation = async ({ lat, lon }) => {
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}${apiKey}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('Unable to retrieve weather data.');
+        }
+
+        const data = await response.json();
+        renderWidgetWeather(data);
+    } catch (error) {
+        weatherWidget.innerHTML = `<p style="color: red;">${error.message}</p>`;
+    }
+};
+
+const initializeWidget = () => {
+    const success = (position) => {
+        const { latitude, longitude } = position.coords;
+        getWeatherByLocation({ lat: latitude, lon: longitude });
+    };
+
+    const error = () => {
+        weatherWidget.innerHTML = `<p style="color: red;">Location access denied.</p>`;
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
+};
+
+initializeWidget();

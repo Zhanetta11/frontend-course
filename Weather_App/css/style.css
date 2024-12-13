@@ -276,3 +276,34 @@ body {
     background-color: #195ba1;
     transform: scale(1.05);
 }
+
+.weather-widget {
+    position: fixed;
+    top: 10px;
+    right: 50px;
+    width: 150px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    z-index: 1000;
+    color: #333;
+}
+
+.weather-widget img {
+    width: 50px;
+    height: 50px;
+}
+
+.weather-widget h4 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.weather-widget p {
+    font-size: 14px;
+    margin: 2px 0;
+}
