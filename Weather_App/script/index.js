@@ -6,11 +6,21 @@ const input = document.querySelector('.inp')
 const output = document.querySelector('.output')
 
 const getWeatherData = async () => {
-    const url = API + input.value + apiKey
-    const request = await fetch(url)
-    const response = await request.json()
-    renderData(response);
-    input.value = ''
+    try {
+        const url = API + input.value + apiKey;
+        const request = await fetch(url);
+
+        if (!request.ok) {
+            throw new Error('City not found');
+        }
+
+        const response = await request.json();
+        renderData(response);
+    } catch (error) {
+        renderError(error.message);
+    } finally {
+        input.value = '';
+    }
 }
 
 form.addEventListener('submit', (event) => {
@@ -43,3 +53,13 @@ const renderData = (data) => {
 
     output.append(cityName, tempC, weatherCondition, humidity, windSpeed, weatherIcon)
 }
+
+const renderError = (message) => {
+    output.innerHTML = '';
+
+    const errorMessage = document.createElement('h3');
+    errorMessage.style.color = 'red';
+    errorMessage.textContent = `${message}`;
+
+    output.append(errorMessage);
+};
