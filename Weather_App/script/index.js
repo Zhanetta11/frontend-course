@@ -5,8 +5,20 @@ const form = document.querySelector('.search')
 const input = document.querySelector('.inp')
 const output = document.querySelector('.output')
 
+const renderLoading = () => {
+    output.innerHTML = '';
+    const spinner = document.createElement('div');
+    spinner.className = 'spinner';
+    spinner.innerHTML = `
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    `;
+    output.append(spinner);
+};
+
 const getWeatherData = async () => {
     try {
+        renderLoading();
+        
         const url = API + input.value + apiKey;
         const request = await fetch(url);
 
