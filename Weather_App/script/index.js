@@ -1,5 +1,6 @@
 const API = 'https://api.openweathermap.org/data/2.5/weather?q='
 const apiKey = '&appid=2fe336be3244a86cb9176e98a52f60a6'
+const forecastAPI = 'https://api.openweathermap.org/data/2.5/forecast?q='
 
 const form = document.querySelector('.search')
 const input = document.querySelector('.inp')
@@ -22,7 +23,7 @@ const renderLoading = () => {
 const getWeatherData = async (cityName) => {
     try {
         renderLoading();
-        
+
         const url = API + cityName + apiKey
         const request = await fetch(url);
 
@@ -37,18 +38,38 @@ const getWeatherData = async (cityName) => {
     }
 };
 
+
+const getForecastData = async (cityName) => {
+    try {
+        const url = forecastAPI + cityName + apiKey;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('City not found for forecast');
+        }
+
+        const data = await response.json();
+        renderForecast(data);
+    } catch (error) {
+        output.innerHTML = `<p style="color: red;">${error.message}</p>`;
+    }
+};
+
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     getWeatherData(input.value);
+    getForecastData(input.value);
     input.value = '';
 });
+
 
 const renderData = (data) => {
     output.innerHTML = '';
     const cityName = document.createElement('h1');
     cityName.textContent = data.name;
 
-    const tempC = document.createElement('h3');
+    const tempC = document.createElement('h2');
     tempC.textContent = `${Math.floor(data.main.temp - 273.15)}°C`;
 
     const weatherCondition = document.createElement('h3');
@@ -65,11 +86,11 @@ const renderData = (data) => {
     weatherIcon.alt = data.weather[0].main;
 
     const isCityInFavorites = favorites.some(fav => fav.name === data.name);
-    
+
     const favoriteButton = document.createElement('button');
     favoriteButton.className = 'favourites_btn'
     favoriteButton.textContent = isCityInFavorites ? 'Remove from Favorites' : 'Add to Favorites';
-    
+
     favoriteButton.addEventListener('click', () => {
         if (favoriteButton.textContent === 'Add to Favorites') {
             addToFavorites(data, favoriteButton);
@@ -79,6 +100,77 @@ const renderData = (data) => {
     });
 
     output.append(cityName, tempC, weatherCondition, humidity, windSpeed, weatherIcon, favoriteButton);
+};
+
+
+const renderForecast = (data) => {
+    const dailyData = {};
+    data.list.forEach((entry) => {
+        const date = entry.dt_txt.split(' ')[0];
+        if (!dailyData[date]) {
+            dailyData[date] = [];
+        }
+        dailyData[date].push(entry);
+    });
+
+    const labels = Object.keys(dailyData);
+    const temperatures = labels.map((date) =>
+        Math.floor(
+            dailyData[date].reduce((sum, item) => sum + (item.main.temp - 273.15), 0) /
+            dailyData[date].length
+        )
+    );
+    renderForecastChart(labels, temperatures);
+};
+
+
+const renderForecastChart = (labels, temperatures) => {
+    const chartContainer = document.createElement('canvas');
+    chartContainer.id = 'forecastChart';
+    output.append(chartContainer);
+
+    new Chart(chartContainer, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: temperatures,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false,
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return `${tooltipItem.raw}°C`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Temperature (°C)',
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date',
+                    },
+                },
+            },
+        },
+    });
 };
 
 
@@ -96,7 +188,7 @@ const addToFavorites = (city, button) => {
     if (!favorites.some(fav => fav.name === city.name)) {
         favorites.push(city);
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        button.textContent = 'Remove from Favorites'; 
+        button.textContent = 'Remove from Favorites';
         renderFavorites();
     }
 };
@@ -104,7 +196,7 @@ const addToFavorites = (city, button) => {
 const removeFromFavorites = (city, button) => {
     favorites = favorites.filter(fav => fav.name !== city.name);
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    button.textContent = 'Add to Favorites'; 
+    button.textContent = 'Add to Favorites';
     renderFavorites();
 };
 
@@ -122,7 +214,10 @@ const renderFavorites = () => {
             <h4>${fav.name}</h4>
         `;
 
-        favCity.addEventListener('click', () => renderData(fav));
+        favCity.addEventListener('click', () => {
+            renderData(fav);
+            getForecastData(fav.name);
+        });
 
         favoritesContainer.append(favCity);
     });
@@ -137,6 +232,7 @@ const toggleFavorites = () => {
         favButton.textContent = 'Show Favorites';
     }
 };
+
 
 favButton.addEventListener('click', toggleFavorites);
 

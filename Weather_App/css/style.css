@@ -12,7 +12,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
     padding: 20px;
 }
 
@@ -69,9 +68,14 @@ body {
     margin: 10px 0;
 }
 
-.output h4 {
-    font-weight: 500;
-    font-size: 14px;
+.output h2 {
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.output h3 {
+    font-weight: 700;
+    font-size: 18px;
     margin: 5px 0;
     color: #3c4244;
 }
@@ -192,6 +196,7 @@ body {
     }
 }
 
+/* ======================================== */
 
 .show-favorites-btn {
     display: inline-flex;
@@ -206,7 +211,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 20px;
-
 }
 
 .show-favorites-btn:hover {
@@ -219,20 +223,18 @@ body {
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     max-height: 300px;
     max-width: 600px;
-    overflow-y: auto;
-    margin-top: 10px;
-    opacity: 0;
+    margin: 10px auto 40px auto;
+    transition: opacity 0.3s ease;
 }
 
 .favorites.show {
     display: flex;
-    opacity: 1;
 }
+
 
 .fav-city {
     margin: 10px;
@@ -253,7 +255,7 @@ body {
 }
 
 .fav-city:hover {
-    background-color: #e1e8e8;
+    background-color: #aec3b0;
 }
 
 
@@ -269,7 +271,7 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
     display: flex;
     text-align: center;
-    margin: 0 auto;
+    margin: 5px auto 20px;
 }
 
 .favourites_btn:hover {
@@ -282,7 +284,7 @@ body {
     top: 10px;
     right: 50px;
     width: 150px;
-    background: rgba(0, 0, 0, 0.1);
+    background: #aec3b0;
     border: 1px solid rgba(0, 123, 255, 0.3);
     border-radius: 10px;
     padding: 10px;
