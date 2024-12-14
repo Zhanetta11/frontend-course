@@ -5,7 +5,7 @@ function AddTask() {
   const { newTask, setNewTask, addTask } = useTaskContext();
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
       <input
         type="text"
         value={newTask}
