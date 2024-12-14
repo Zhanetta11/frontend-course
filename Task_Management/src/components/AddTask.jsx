@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTaskContext } from '../TaskContext';
 
-function AddTask({ newTask, setNewTask, addTask }) {
+function AddTask() {
+  const { newTask, setNewTask, addTask } = useTaskContext();
+
   return (
     <div>
       <input
