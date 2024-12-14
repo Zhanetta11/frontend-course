@@ -3,12 +3,12 @@ import TaskItem from './TaskItem';
 import { useTaskContext } from '../TaskContext';
 
 function TaskList() {
-  const { tasks } = useTaskContext();
+  const { tasks, deleteTask } = useTaskContext();
 
   return (
     <ul>
       {tasks.map((task, index) => (
-        <TaskItem key={index} task={task} />
+        <TaskItem key={index} task={task} deleteTask={deleteTask} />
       ))}
     </ul>
   );

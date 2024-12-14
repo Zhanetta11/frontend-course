@@ -1,7 +1,11 @@
 import React from 'react';
 
-function TaskItem({ task }) {
-  return <li>{task}</li>;
+function TaskItem({ task, deleteTask }) {
+  return (
+    <li>
+      {task} <button onClick={() => deleteTask(task)}>Delete</button>
+    </li>
+  );
 }
 
 export default TaskItem;
